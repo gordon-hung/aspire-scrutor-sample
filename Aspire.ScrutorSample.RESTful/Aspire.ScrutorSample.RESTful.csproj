@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+		<NoWarn>$(NoWarn);1591;0063</NoWarn>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Aspire.Hosting.Redis" Version="8.2.1" />
+		<PackageReference Include="Aspire.MongoDB.Driver" Version="8.2.1" />
+		<PackageReference Include="Aspire.StackExchange.Redis" Version="8.2.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Aspire.ScrutorSample.Core\Aspire.ScrutorSample.Core.csproj" />
+		<ProjectReference Include="..\Aspire.ScrutorSample.Repositories\Aspire.ScrutorSample.Repositories.csproj" />
+		<ProjectReference Include="..\Aspire.ScrutorSample.ServiceDefaults\Aspire.ScrutorSample.ServiceDefaults.csproj" />
+	</ItemGroup>
+
+</Project>

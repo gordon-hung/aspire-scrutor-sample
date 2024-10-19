@@ -1,0 +1,11 @@
+﻿# Rules in this file were initially inferred by Visual Studio IntelliCode from the D:\Documents\Visual Studio 2019\Repos\tgs-cashservice\Tgs.CashService.IntegrationTests\ codebase based on best match to current usage at 2022/1/25
+# You can modify the rules from these initially generated values to suit your own policies
+# You can learn more about editorconfig here: https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
+[*.cs]
+
+
+# CA2012: 正確使用 ValueTasks
+dotnet_diagnostic.CA2012.severity = none
+
+# CA2007: 請考慮對等候的工作呼叫 ConfigureAwait
+dotnet_diagnostic.CA2007.severity = none

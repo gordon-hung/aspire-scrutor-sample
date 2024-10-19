@@ -1,0 +1,6 @@
+@Aspire.ScrutorSample.RESTful_HostAddress = http://localhost:5098
+
+GET {{Aspire.ScrutorSample.RESTful_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
