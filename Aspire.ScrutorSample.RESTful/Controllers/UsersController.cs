@@ -53,7 +53,7 @@ public class UsersController : ControllerBase
 		string id)
 	{
 		var response = await mediator.Send(
-			request: new UserGetByIdRequest(Id: id),
+			request: new UserGetRequest(Id: id),
 			cancellationToken: HttpContext.RequestAborted)
 			.ConfigureAwait(false);
 

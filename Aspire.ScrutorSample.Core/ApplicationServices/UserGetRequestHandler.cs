@@ -2,10 +2,10 @@
 
 namespace Aspire.ScrutorSample.Core.ApplicationServices;
 
-internal class UserGetByIdRequestHandler(
-	IUserRepository repository) : IRequestHandler<UserGetByIdRequest, UserInfoResponse?>
+internal class UserGetRequestHandler(
+	IUserRepository repository) : IRequestHandler<UserGetRequest, UserInfoResponse?>
 {
-	public async Task<UserInfoResponse?> Handle(UserGetByIdRequest request, CancellationToken cancellationToken)
+	public async Task<UserInfoResponse?> Handle(UserGetRequest request, CancellationToken cancellationToken)
 	{
 		var info = await repository.GetAsync(request.Id.ToLower(), cancellationToken).ConfigureAwait(false);
 

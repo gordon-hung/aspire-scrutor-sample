@@ -5,15 +5,17 @@ using NSubstitute;
 
 namespace Aspire.ScrutorSample.Core.UnitTest.ApplicationServices;
 
-public class UserGetByUsernameRequestHandlerUnitTest
+public class UserLoginRequestHandlerUnitTest
 {
 	[Fact]
 	public async Task Normal_Process()
 	{
+		var fakeHasher = Substitute.For<IPasswordHasher>();
 		var fakeRepository = Substitute.For<IUserRepository>();
 
-		var request = new UserGetByUsernameRequest(
-			Username: "Gordon_Hung");
+		var request = new UserLoginRequest(
+			Username: "Gordon_Hung",
+			Password: "1qaz2wsx");
 
 		var id = "4uo9qvf7jdpe";
 		_ = fakeRepository.GetIdAsync(
@@ -33,7 +35,13 @@ public class UserGetByUsernameRequestHandlerUnitTest
 			cancellationToken: Arg.Any<CancellationToken>())
 			.Returns(info);
 
-		var sut = new UserGetByUsernameRequestHandler(
+		_ = fakeHasher.VerifyPassword(
+			plainPassword: Arg.Is(request.Password),
+			hashedPassword: Arg.Is(info.Password))
+			.Returns(true);
+
+		var sut = new UserLoginRequestHandler(
+			fakeHasher,
 			fakeRepository);
 
 		var cancellationTokenSource = new CancellationTokenSource();
@@ -41,11 +49,6 @@ public class UserGetByUsernameRequestHandlerUnitTest
 
 		var actual = await sut.Handle(request, token);
 
-		Assert.NotNull(actual);
-		Assert.Equal(info.Id, actual.Id);
-		Assert.Equal(info.Username, actual.Username);
-		Assert.Equal(info.State, actual.State);
-		Assert.Equal(info.CreatedAt, actual.CreatedAt);
-		Assert.Equal(info.UpdateAt, actual.UpdateAt);
+		Assert.True(actual);
 	}
 }
